@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Karan Tiwari</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --orange: #d97757;
+                --black: #1a1a1a;
+                --gray: #555;
+                --light-gray: #999;
+                --bg: #fafaf8;
+                --border: #e8e8e4;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {
+                font-size: 17px;
+            }
+
+            body {
+                background: var(--bg);
+                color: var(--black);
+                font-family: "Lora", Georgia, serif;
+                line-height: 1.75;
+                padding: 0 1.5rem;
+            }
+
+            a {
+                color: var(--orange);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+                transition: border-color 0.15s;
+            }
+            a:hover {
+                border-bottom-color: var(--orange);
+            }
+
+            .wrap {
+                max-width: 640px;
+                margin: 0 auto;
+            }
+
+            header {
+                padding: 2.8rem 0 2rem;
+                border-bottom: 1px solid var(--border);
+                margin-bottom: 2.8rem;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                margin-bottom: 1.4rem;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+            }
+            .logo-mark {
+                width: 32px;
+                height: 32px;
+                flex-shrink: 0;
+            }
+            .logo-name {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: var(--black);
+                letter-spacing: -0.01em;
+            }
+
+            nav {
+                display: flex;
+                gap: 1.4rem;
+                flex-wrap: wrap;
+            }
+            nav a {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.78rem;
+                color: var(--gray);
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                border-bottom: none;
+                cursor: pointer;
+            }
+            nav a:hover {
+                color: var(--orange);
+            }
+            nav a.active {
+                color: var(--orange);
+            }
+
+            .section {
+                display: none;
+                animation: fadein 0.2s ease;
+            }
+            .section.visible {
+                display: block;
+            }
+
+            @keyframes fadein {
+                from {
+                    opacity: 0;
+                    transform: translateY(6px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero {
+                margin-bottom: 2.8rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+                font-weight: 500;
+                line-height: 1.3;
+                margin-bottom: 1.4rem;
+            }
+            .hero h1 em {
+                color: var(--orange);
+                font-style: italic;
+            }
+            .hero-photo {
+                float: right;
+                margin: 0 0 1rem 1.8rem;
+                width: 130px;
+                height: 130px;
+                border-radius: 3px;
+                object-fit: cover;
+                filter: grayscale(20%);
+            }
+            .hero p {
+                color: var(--gray);
+                margin-bottom: 1rem;
+                font-size: 0.97rem;
+            }
+            .clearfix::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .tagline {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.75rem;
+                color: var(--light-gray);
+                border-left: 2px solid var(--orange);
+                padding-left: 0.8rem;
+                margin: 2rem 0 0;
+                line-height: 1.6;
+                font-style: italic;
+            }
+
+            .section-header {
+                border-top: 1px solid var(--border);
+                padding-top: 2rem;
+                margin-bottom: 1.4rem;
+            }
+            .section-header h2 {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.72rem;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--light-gray);
+            }
+
+            .project-list {
+                list-style: none;
+                margin-bottom: 3rem;
+            }
+            .project-list li {
+                margin-bottom: 1.1rem;
+                padding-bottom: 1.1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .project-list li:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .proj-name {
+                font-weight: 500;
+                font-size: 0.97rem;
+                color: var(--orange);
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+            .proj-desc {
+                font-size: 0.88rem;
+                color: var(--gray);
+                line-height: 1.6;
+            }
+
+            .post-list {
+                list-style: none;
+                margin-bottom: 3rem;
+            }
+            .post-list li {
+                display: flex;
+                gap: 1.2rem;
+                align-items: baseline;
+                margin-bottom: 0.7rem;
+            }
+            .post-list .date {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.72rem;
+                color: var(--light-gray);
+                flex-shrink: 0;
+            }
+            .post-list a {
+                font-size: 0.95rem;
+                color: var(--black);
+                border-bottom-color: transparent;
+            }
+            .post-list a:hover {
+                color: var(--orange);
+                border-bottom-color: var(--orange);
+            }
+
+            .photo-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.7rem;
+                margin-bottom: 3rem;
+            }
+            .photo-grid figure {
+                margin: 0;
+            }
+            .photo-grid img {
+                width: 100%;
+                aspect-ratio: 4/3;
+                object-fit: cover;
+                border-radius: 2px;
+                filter: grayscale(30%);
+                transition: filter 0.3s;
+            }
+            .photo-grid img:hover {
+                filter: grayscale(0%);
+            }
+            .photo-grid figcaption {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.68rem;
+                color: var(--light-gray);
+                margin-top: 0.35rem;
+            }
+
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 1.8rem 0 3rem;
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.72rem;
+                color: var(--light-gray);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            footer a {
+                color: var(--light-gray);
+                border: none;
+            }
+            footer a:hover {
+                color: var(--orange);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header>
+                <a class="logo" onclick="showSection('home')">
+                    <svg
+                        class="logo-mark"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <text
+                            x="1"
+                            y="24"
+                            font-family="IBM Plex Mono, monospace"
+                            font-size="15"
+                            font-weight="500"
+                            fill="#d97757"
+                        >
+                            KT
+                        </text>
+                    </svg>
+                    <span class="logo-name">karan tiwari</span>
+                </a>
+                <nav>
+                    <a
+                        onclick="showSection('home')"
+                        id="nav-home"
+                        class="active"
+                        >home</a
+                    >
+                    <a onclick="showSection('projects')" id="nav-projects"
+                        >projects</a
+                    >
+                    <a onclick="showSection('writing')" id="nav-writing"
+                        >writing</a
+                    >
+                    <a onclick="showSection('photos')" id="nav-photos"
+                        >photos</a
+                    >
+                </nav>
+            </header>
+
+            <main>
+                <!-- HOME -->
+                <div class="section visible" id="section-home">
+                    <div class="hero clearfix">
+                        <img
+                            class="hero-photo"
+                            src="static/images/profile.jpg"
+                            alt="Karan Tiwari"
+                        />
+                        <h1>thinker / <em>problem solver</em> / artist</h1>
+                        <p>
+                            I spend my time thinking about machine learning,
+                            building things that probably don't need to exist,
+                            and occasionally wondering why I chose this path —
+                            then immediately writing more code.
+                        </p>
+                        <p>
+                            I've been fascinated by how computers learn to see
+                            and understand the world, from the days of ConvNets
+                            ruling vision tasks to the transformer revolution
+                            that quietly dethroned them.
+                        </p>
+                        <p>
+                            Currently exploring the intersection of language
+                            models, local AI, and whatever rabbit hole I
+                            stumbled into this week.
+                        </p>
+                        <p>
+                            a thinker who analyses a situation from 1000 ways
+                            just to realise it was for ordering a pizza.
+                        </p>
+                        <blockquote class="tagline">
+                            Will solve a Rubik's cube blindfolded but will be
+                            blindsided by the fact that a triangular matrix is a
+                            square.
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- PROJECTS -->
+                <div class="section" id="section-projects">
+                    <div class="section-header"><h2>Projects</h2></div>
+                    <ul class="project-list">
+                        <li>
+                            <a
+                                class="proj-name"
+                                href="https://github.com/tiwarikaran/Deit"
+                                target="_blank"
+                                >DeiT — Vision Transformer Implementation</a
+                            >
+                            <span class="proj-desc"
+                                >At a time when the entire computer vision world
+                                was betting on CNNs, this project identified the
+                                inflection point early. An implementation of
+                                Facebook AI's Data-Efficient Image Transformer
+                                from scratch — a model that matches Google's ViT
+                                performance using 250x less training data. Not
+                                tutorial code; this is someone who read the
+                                research, understood it deeply enough to
+                                implement it, and documented the journey.</span
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="proj-name"
+                                href="https://github.com/tiwarikaran/Statitsics-and-Python-equals-ML"
+                                target="_blank"
+                                >Statistics & Python = ML</a
+                            >
+                            <span class="proj-desc"
+                                >Most people learn ML by copying Kaggle
+                                notebooks. This goes back to first principles —
+                                building the mathematical foundation that every
+                                ML model stands on. The work of someone who
+                                refuses to be a blackbox engineer and insists on
+                                understanding why things work, not just that
+                                they work.</span
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="proj-name"
+                                href="https://github.com/tiwarikaran/Dialogflow"
+                                target="_blank"
+                                >Dialogflow — Conversational AI</a
+                            >
+                            <span class="proj-desc"
+                                >Built a working NLP pipeline using Google's
+                                Dialogflow before conversational AI became the
+                                buzzword it is today. Early signal of someone
+                                tracking where the industry was heading and
+                                building hands-on intuition before the hype
+                                arrived.</span
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="proj-name"
+                                href="https://github.com/tiwarikaran/Why-Children-Do-not-go-to-school"
+                                target="_blank"
+                                >Why Children Don't Go to School</a
+                            >
+                            <span class="proj-desc"
+                                >Used real government data from Gujarat, Diu &
+                                Daman to analyse a genuine social problem
+                                through code. Technical skill applied to things
+                                that actually matter. Data science with a
+                                conscience.</span
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="proj-name"
+                                href="https://github.com/tiwarikaran/fast.ai-for-meme-classifcation"
+                                target="_blank"
+                                >Meme Classifier — fast.ai</a
+                            >
+                            <span class="proj-desc"
+                                >Trained a computer vision model to classify
+                                memes — notoriously hard due to cultural
+                                context, sarcasm, and visual noise. Using
+                                fast.ai to crack this is the mark of someone who
+                                picks interesting hard problems for sport.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- WRITING -->
+                <div class="section" id="section-writing">
+                    <div class="section-header"><h2>Writing</h2></div>
+                    <ul class="post-list">
+                        <li>
+                            <span class="date">22 Jan 2021</span>
+                            <a
+                                href="https://medium.com/@tiwarikaran.732/the-rise-and-fall-of-the-cnn-6d1878e9e8c7"
+                                target="_blank"
+                                >The Rise and Fall of the CNN</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PHOTOS -->
+                <div class="section" id="section-photos">
+                    <div class="section-header"><h2>Around</h2></div>
+                    <div class="photo-grid">
+                        <figure>
+                            <img
+                                src="static/images/photos/photo1.jpg"
+                                alt="Photo 1"
+                            />
+                            <figcaption>somewhere, sometime</figcaption>
+                        </figure>
+                        <figure>
+                            <img
+                                src="static/images/photos/photo2.jpg"
+                                alt="Photo 2"
+                            />
+                            <figcaption>wedding madness</figcaption>
+                        </figure>
+                        <figure>
+                            <img
+                                src="static/images/photos/photo3.jpg"
+                                alt="Photo 3"
+                            />
+                            <figcaption>
+                                best black's white bishop in the history of
+                                freestyle chess
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <img
+                                src="static/images/photos/photo4.jpg"
+                                alt="Photo 4"
+                            />
+                            <figcaption>
+                                aerosol intelligence > artificial intelligence
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <span>Karan Tiwari © 2021–2026</span>
+                <span>
+                    <a href="https://github.com/tiwarikaran" target="_blank"
+                        >github</a
+                    >
+                    &nbsp;·&nbsp;
+                    <a
+                        href="https://medium.com/@tiwarikaran.732"
+                        target="_blank"
+                        >medium</a
+                    >
+                    &nbsp;·&nbsp;
+                    <a href="mailto:tiwarikaran.732@gmail.com">email</a>
+                </span>
+            </footer>
+        </div>
+
+        <script>
+            function showSection(name) {
+                document
+                    .querySelectorAll(".section")
+                    .forEach((s) => s.classList.remove("visible"));
+                document
+                    .querySelectorAll("nav a")
+                    .forEach((a) => a.classList.remove("active"));
+                document
+                    .getElementById("section-" + name)
+                    .classList.add("visible");
+                document.getElementById("nav-" + name).classList.add("active");
+            }
+        </script>
+    </body>
+</html>
